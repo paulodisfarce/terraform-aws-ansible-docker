@@ -1,5 +1,5 @@
 resource "aws_instance" "ec2-publica" {
-  ami                    = data.aws_ami.amazon.id
+  ami                    = data.aws_ami.amazon.id #data.aws_ami.ubuntu.id
   instance_type          = var.instance_type
   key_name               = var.key_name
   subnet_id              = var.subnet_id
