@@ -21,6 +21,9 @@ para Ubuntu
 No Ansible, utilizamos um playbook disponibilizado no site da DigitalOcean e incrementamos um shell para fazer o deploy do Docker-Compose. Caso queira fazer o deploy em outro diretório, basta mudar o diretório no playbook na parte de CHDIR, para o diretório desejado.
 No Amazon Linux 2, tivemos uma dificuldade para instalar o docker-compose diretamente pelo pip, então optamos por usar o shell para fazer o download do compose.
 
+## Docker
+
+No processo de deploy utilizando o Docker, vem a stack para um aplicativo web que inclui NGINX, PHP e MYSQL. Neste repositório, foram utilizadas imagens padrões, mas é recomendável utilizar a imagem Alpine, devido ao seu tamanho menor. No entanto, é importante lembrar que essa imagem é um pouco mais complexa em comparação com outras. É possível buildar o Dockerfile, mas o objetivo aqui é garantir que os container estejam funcionando, por isso utilizei um Compose simples. 
 
 ## As versões das ferramentas utilizadas neste projeto são:
 
