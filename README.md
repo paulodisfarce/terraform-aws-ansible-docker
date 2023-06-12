@@ -10,7 +10,7 @@ Para permitir o uso de diferentes sistemas operacionais, o data-source contém d
 
 ## Implementação do Ansible no Ubuntu e no Amazon Linux 2
 
-No Ansible, utilizamos um playbook disponibilizado no site da DigitalOcean e incrementamos um shell para fazer o deploy do Docker-Compose. Caso queira fazer o deploy em outro diretório, basta mudar o diretório no playbook na parte de CHDIR, para o diretório desejado.
+No Ubuntu, utilizamos um playbook do Ansible disponibilizado no site da DigitalOcean e incrementamos um shell para fazer o deploy do Docker-Compose. Caso queira fazer o deploy em outro diretório, basta mudar o diretório no playbook na parte de CHDIR, para o diretório desejado.
 No Amazon Linux 2, tivemos uma dificuldade para instalar o docker-compose diretamente pelo pip, então optamos por usar o shell do Ansible para fazer o download do compose.
 
 Foi usado o plugin Amazon AWS disponibilizado no Galaxy Ansible para filtrar a máquina na AWS. Como existem duas imagens de Linux diferentes no data-source, também utilizamos dois playbooks. Basta mudá-los no arquivo main.tf do módulo AWS-Servidor da seguinte forma:
