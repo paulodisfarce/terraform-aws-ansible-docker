@@ -16,8 +16,14 @@ para Amazon Linux 2
 para Ubuntu
 * "ansible-playbook -i ${var.ansible_filter_aws_path} ${var.playbook_docker_Ubuntu_path} -u ${var.user_ubuntu} --key-file ${var.key_aws_path}"  
 
+## Implementação do Ansible no Ubuntu e no Amazon Linux 2
+
+No Ansible, utilizamos um playbook disponibilizado no site da DigitalOcean e incrementamos um shell para fazer o deploy do Docker-Compose. Caso queira fazer o deploy em outro diretório, basta mudar o diretório no playbook na parte de CHDIR, para o diretório desejado.
+No Amazon Linux 2, tivemos uma dificuldade para instalar o docker-compose diretamente pelo pip, então optamos por usar o shell para fazer o download do compose.
+
+
 ## As versões das ferramentas utilizadas neste projeto são:
 
 * Terraform 1.2.1
-* Docker (versão mais recente)
-* Ansible (versão mais recente)
+* Docker 20.10.21
+* Ansible core 2.15.0
