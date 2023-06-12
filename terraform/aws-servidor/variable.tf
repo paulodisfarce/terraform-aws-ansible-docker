@@ -74,3 +74,8 @@ variable "ssh" {
   type    = string
   default = "ssh"
 }
+
+variable "user_ubuntu" {
+  type = string
+  default = "ubuntu"
+}
