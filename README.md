@@ -8,18 +8,21 @@ A arquitetura é composta por dois módulos: um para rede e outro para instânci
 
 Para permitir o uso de diferentes sistemas operacionais, o data-source contém duas imagens Linux: uma com base no Amazon Linux 2 (RedHat/CentOS) e outra com base no Ubuntu (Debian). É possível substituir o código pelo código comentado para utilizar a imagem desejada.
 
-No Ansible, utilizamos o plugin Amazon AWS disponibilizado no Galaxy Ansible para filtrar a máquina na AWS. Como existem duas imagens de Linux diferentes no data-source, também utilizamos dois playbooks. Basta mudá-los no arquivo main.tf do módulo AWS-Servidor da seguinte forma:
-
-para Amazon Linux 2
-* "ansible-playbook -i ${var.ansible_filter_aws_path} ${var.playbook_docker_redhat_path} -u ${var.user_amazon2} --key-file ${var.key_aws_path}" 
-
-para Ubuntu
-* "ansible-playbook -i ${var.ansible_filter_aws_path} ${var.playbook_docker_Ubuntu_path} -u ${var.user_ubuntu} --key-file ${var.key_aws_path}"  
-
 ## Implementação do Ansible no Ubuntu e no Amazon Linux 2
 
 No Ansible, utilizamos um playbook disponibilizado no site da DigitalOcean e incrementamos um shell para fazer o deploy do Docker-Compose. Caso queira fazer o deploy em outro diretório, basta mudar o diretório no playbook na parte de CHDIR, para o diretório desejado.
 No Amazon Linux 2, tivemos uma dificuldade para instalar o docker-compose diretamente pelo pip, então optamos por usar o shell do Ansible para fazer o download do compose.
+
+Foi usado o plugin Amazon AWS disponibilizado no Galaxy Ansible para filtrar a máquina na AWS. Como existem duas imagens de Linux diferentes no data-source, também utilizamos dois playbooks. Basta mudá-los no arquivo main.tf do módulo AWS-Servidor da seguinte forma:
+
+para Amazon Linux 2
+
+    "ansible-playbook -i ${var.ansible_filter_aws_path} ${var.playbook_docker_redhat_path} -u ${var.user_amazon2} --key-file ${var.key_aws_path}"
+
+para Ubuntu
+
+    "ansible-playbook -i ${var.ansible_filter_aws_path} ${var.playbook_docker_Ubuntu_path} -u ${var.user_ubuntu} --key-file ${var.key_aws_path}"
+
 
 ## Docker
 
