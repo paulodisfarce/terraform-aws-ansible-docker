@@ -1,0 +1,72 @@
+---
+- name: "AWS - Install docker"
+  hosts: all
+  remote_user: ec2-user
+  become: yes
+  tasks:
+    - name: Update all packages
+      yum:
+        name: '*'
+        state: latest
+        update_only: yes
+
+    - name: Ensure a list of yum packages are installed
+      yum:
+        name: "{{ packages }}"
+        state: latest
+        update_cache: yes
+      vars:
+        packages:
+        - python-pip
+        - yum-utils
+        - device-mapper-persistent-data
+        - lvm2
+        - amazon-linux-extras
+
+    - name: Add extras repository
+      shell: yum-config-manager --enable extras
+
+    - name: Enable Some packages from amazon-linux-extras packages
+      shell: "amazon-linux-extras enable python3.8 ansible2 docker"
+
+    - name: Ensure a list of yum packages are installed
+      yum:
+        name: "{{ packages }}"
+        state: latest
+        update_cache: yes
+      vars:
+
+        packages:
+        - python3.8
+        - ansible
+        - docker
+
+    - name: Enable Docker CE service at startup
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Upgrade pip3
+      shell: "python3.8 -m pip install pip --upgrade"
+
+    - name: Ensure Python pip packages are installed
+      pip:
+        name: "{{ packages }}"
+        executable: /usr/local/bin/pip3.8
+      vars:
+        packages:
+        - boto
+        - boto3
+
+    - name: install docker compose
+      shell: curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+
+    - name: install docker compose
+      shell: sudo chmod +x /usr/bin/docker-compose
+
+    - name: deploy docker compose
+      shell: docker-compose up -d
+      args:
+        chdir: /home/ec2-user/
+        

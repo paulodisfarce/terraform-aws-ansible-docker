@@ -1,0 +1,38 @@
+version: '3'
+
+networks:
+  web-app:
+
+services:
+  web:
+    container_name: nginx
+    image: nginx
+    restart: always
+    ports:
+      - "8080:80"
+    networks:
+      - web-app
+    links:
+      - php
+
+  php:
+    container_name: php
+    image: php:7.4-fpm
+    restart: always
+    ports:
+      - "9000:9000"
+    networks:
+      - web-app
+
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    networks:
+      - web-app
+
