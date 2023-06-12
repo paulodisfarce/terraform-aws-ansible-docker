@@ -2,7 +2,7 @@
 
 Este projeto tem como objetivo automatizar a implantação de infraestrutura na nuvem AWS utilizando as ferramentas Terraform, Docker e Ansible. 
 
-## arquitetura
+## Arquitetura
 
 A arquitetura é composta por dois módulos: um para rede e outro para instâncias. O módulo de rede configura três sub-redes na região US-EAST-1 da AWS, incluindo recursos como VPC, Internet Gateway e Route Table. Para as instâncias, é utilizada a máquina T2.Micro gratuita da AWS, juntamente com todos os recursos disponíveis na camada gratuita.
 
