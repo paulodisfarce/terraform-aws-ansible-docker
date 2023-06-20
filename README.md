@@ -1,5 +1,3 @@
-Segue abaixo a versão melhorada do texto:
-
 ## Infraestrutura automatizada na nuvem AWS com Terraform, Docker e Ansible
 
 Este projeto tem como objetivo automatizar a implantação de infraestrutura na nuvem da AWS (Amazon Web Services) utilizando as ferramentas Terraform, Docker e Ansible.
