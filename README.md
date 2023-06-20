@@ -18,6 +18,9 @@ Foi usado o plugin Amazon AWS, disponibilizado no Galaxy Ansible, para filtrar a
 
 Para a implantação utilizando o Docker, utilizamos a stack para um aplicativo web que inclui NGINX, PHP e MYSQL. Neste repositório, foram utilizadas imagens padrões, mas é recomendável utilizar a imagem Alpine, devido ao seu tamanho menor. No entanto, é importante lembrar que essa imagem é um pouco mais complexa em comparação com outras. É possível buildar o Dockerfile, mas o objetivo aqui é garantir que os containers estejam funcionando, por isso utilizamos um Compose simples.
 
+![dockerps](https://github.com/paulodisfarce/terraform-aws-ansible-docker/assets/83657152/a4875f12-f881-4b98-b631-e7d35eebbc0b)
+
+
 ## Versões das ferramentas utilizadas no projeto
 
 As versões das ferramentas utilizadas neste projeto são:
