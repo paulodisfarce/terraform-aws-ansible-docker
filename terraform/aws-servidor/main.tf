@@ -1,5 +1,5 @@
 resource "aws_instance" "ec2-publica" {
-  ami                    = data.aws_ami.amazon.id #data.aws_ami.ubuntu.id
+  ami                    = var.instance == "amazon" ? data.aws_ami.ubuntu.id : data.aws_ami.amazon.id
   instance_type          = var.instance_type
   key_name               = var.key_name
   subnet_id              = var.subnet_id
@@ -22,7 +22,7 @@ resource "null_resource" "copy_execute" {
 
   connection {
     type        = var.ssh
-    user        = var.user_amazon2
+    user        = var.instance == "amazon" ? "${var.user_ubuntu}" : "${var.user_amazon}"
     private_key = file(var.key_aws_path)
     host        = aws_instance.ec2-publica.public_ip
 
@@ -30,17 +30,17 @@ resource "null_resource" "copy_execute" {
 
   provisioner "file" {
     source      = var.source_path
-    destination = var.destination_path
+    destination = var.instance == "amazon" ? "${var.destination_ubuntu_path}" : "${var.destination_amazon_path}"
   }
 
   provisioner "local-exec" {
-    command = "ansible-playbook -i ${var.ansible_filter_aws_path} ${var.playbook_docker_redhat_path} -u ${var.user_amazon2} --key-file ${var.key_aws_path}"
-
-  }
+   command = var.instance == "amazon" ? var.command_ubuntu : var.command_amazon
+ }
 
   depends_on = [aws_instance.ec2-publica]
 
 }
+
 
 
 

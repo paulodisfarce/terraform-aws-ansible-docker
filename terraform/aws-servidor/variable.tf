@@ -40,9 +40,14 @@ variable "key_aws_path" {
   default = "/home/terraform/Desktop/stack/aws-class-1.pem"
 }
 
-variable "destination_path" {
+variable "destination_amazon_path" {
   type    = string
   default = "/home/ec2-user/"
+}
+
+variable "destination_ubuntu_path" {
+  type    = string
+  default = "/home/ubuntu/"
 }
 
 variable "source_path" {
@@ -50,22 +55,7 @@ variable "source_path" {
   default = "/home/terraform/Desktop/stack/docker/"
 }
 
-variable "ansible_filter_aws_path" {
-  type    = string
-  default = "/home/terraform/Desktop/stack/ansible/aws_ec2.yaml"
-}
-
-variable "playbook_docker_redhat_path" {
-  type    = string
-  default = "/home/terraform/Desktop/stack/ansible/install_docker_redhat.yaml"
-}
-
-variable "playbook_docker_ubuntu_path" {
-  type    = string
-  default = "/home/terraform/Desktop/stack/ansible/install_docker_ubuntu.yaml"
-}
-
-variable "user_amazon2" {
+variable "user_amazon" {
   type    = string
   default = "ec2-user"
 }
@@ -78,4 +68,21 @@ variable "ssh" {
 variable "user_ubuntu" {
   type = string
   default = "ubuntu"
+}
+
+
+
+variable "instance" {
+ type = string
+ default = "ubuntu"
+}
+
+
+
+variable "command_amazon" {
+  default = "ansible-playbook -i /home/terraform/Desktop/stack/ansible/aws_ec2.yaml /home/terraform/Desktop/stack/ansible/install_docker_redhat.yaml -u ec2-user --key-file /home/terraform/Desktop/stack/aws-class-1.pem"
+}
+
+variable "command_ubuntu" {
+  default = "ansible-playbook -i /home/terraform/Desktop/stack/ansible/aws_ec2.yaml /home/terraform/Desktop/stack/ansible/install_docker_ubuntu.yaml -u ubuntu --key-file /home/terraform/Desktop/stack/aws-class-1.pem"
 }
